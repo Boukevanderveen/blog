@@ -1,8 +1,10 @@
 <!doctype html>
 <html lang="en">
+  @if(Auth::Check() && Auth::user()->isAdmin == 1)
+
     @include('navbar')
   <head>
-    Nieuw artiekel
+    Nieuw artikel
     @if($errors->any())
    <ul class="alert alert-danger">
       @foreach($errors as $error)
@@ -31,4 +33,7 @@
       </form>
   </head>
   </body>
+  @else
+  <script> window.location.href = "/"; </script>
+  @endif
 </html>
