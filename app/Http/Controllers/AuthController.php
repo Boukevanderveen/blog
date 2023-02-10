@@ -29,7 +29,15 @@ class AuthController extends Controller
             $User->username = $request->username;
             $User->email = $request->email;
             $User->password = bcrypt($request->password);
-            $User->isAdmin = 0;
+            // De eerste gebruiker die wordt gemaakt is gelijk ook een admin
+            if(User::count() < 1)
+            {
+                $User->isAdmin = 1;
+            }
+            else
+            {
+                $User->isAdmin = 0;
+            }
             $User->save();
 
             return redirect("login");   
