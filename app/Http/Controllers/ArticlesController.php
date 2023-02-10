@@ -32,27 +32,15 @@ class ArticlesController extends Controller
 
             $Articles->save();
 
-            return view("dashboard");   
+            return redirect('/');   
         }
     }
 
     function baseRedirect()
     {
-        if (Auth::check()) 
-        {
-        //$articles = DB::table('articles')->get();
         $articles = DB::table("articles")->where("author", "=", "iemand")->get();
-        //$articles = Article::all();
-        //$articles = Article::all(['title', 'description', 'content', 'author']);            
+           
         return view('dashboard', ['articles' => $articles]);
-
-        //return view('dashboard')->with('articles', $articles);
-
-        }
-        else
-        {
-        return view('login');
-        }
     }
 
     function deleteArticle(Request $request)
@@ -73,12 +61,6 @@ class ArticlesController extends Controller
     {
             $article = DB::table('articles')->where('id', $id)->get();
             return view('article', ['article' => $article]);
-    }
-    
-    function openEditArticle($id)
-    {
-            $article = DB::table('articles')->where('id', $id)->get();
-            return view('editarticle', ['article' => $article]);
     }
 
     function editArticle(Request $request)
