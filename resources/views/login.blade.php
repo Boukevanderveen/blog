@@ -27,5 +27,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
         @csrf
       </form>
+      <br>
+      Nieuwe gebruiker? <a class="nav-link" href="/register">Registreren</a>
   </body>
 </html>
